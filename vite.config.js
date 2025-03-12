@@ -22,7 +22,7 @@ export default defineConfig({
  
     build: {
         outDir: 'public/build', 
-        manifest: true,// Asegúrate de que los assets vayan a /public/build
+        
     }
 
 });
