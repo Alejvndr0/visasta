@@ -1,11 +1,11 @@
+
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: [
-                'resources/sass/app.scss',
+            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/sass/app.scss',
                 'resources/js/app.js',
                'resources/css/style.css',
                 'resources/js/main.js',
@@ -15,9 +15,14 @@ export default defineConfig({
                 'resources/lib/tempusdominus/js/moment-timezone.min.js',
                 'resources/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js',
                 'resources/lib/owlcarousel/assets/owl.carousel.min.css',
-                'resources/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css',
-            ],
+                'resources/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css',],
             refresh: true,
         }),
     ],
+    server: {
+        host: '0.0.0.0', // Para desarrollo local
+    },
+    build: {
+        outDir: 'public/build', // Asegúrate de que los assets vayan a /public/build
+    }
 });
