@@ -24,7 +24,8 @@ COPY . .
 RUN composer install --optimize-autoloader --no-dev \
     && npm install \
     && npm run build \
-    && ls -la /var/www/public/build || echo "No build directory found"
+    && ls -la /var/www/public/build/ || echo "Build directory is empty" \
+    && cat /var/www/public/build/manifest.json || echo "Manifest file not found"
 
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage \
