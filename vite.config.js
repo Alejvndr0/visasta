@@ -19,9 +19,7 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    server: {
-        host: '0.0.0.0', // Para desarrollo local
-    },
+ 
     build: {
         outDir: 'public/build', // Asegúrate de que los assets vayan a /public/build
     }
