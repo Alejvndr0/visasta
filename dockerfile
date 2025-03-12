@@ -26,8 +26,7 @@ RUN composer install --optimize-autoloader --no-dev \
     && npm run build
 
 RUN chown -R www-data:www-data /var/www \
-    && chmod -R 755 /var/www/storage
+    && chmod -R 755 /var/www/storage \
+    && chmod -R 755 /var/www/public
 
-EXPOSE 10000
-
-CMD php artisan migrate --force  && php artisan serve --host=0.0.0.0 --port=10000
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
