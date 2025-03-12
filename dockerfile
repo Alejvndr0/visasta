@@ -28,7 +28,4 @@ RUN composer install --optimize-autoloader --no-dev \
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage
 
-# No es necesario EXPOSE, Render ignora esto y usa $PORT
-# EXPOSE 10000
-
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
+CMD bash -c "until pg_isready -h $DB_HOST -p $DB_PORT -U $DB_USERNAME -d $DB_DATABASE; do echo 'Esperando a PostgreSQL...'; sleep 2; done; php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"
