@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: prueba-laravel
+    name: Laravel
     env: docker
     dockerfilePath: ./Dockerfile
     envVars:

@@ -28,6 +28,7 @@ RUN composer install --optimize-autoloader --no-dev \
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage
 
-EXPOSE 10000
+# No es necesario EXPOSE, Render ignora esto y usa $PORT
+# EXPOSE 10000
 
-CMD php artisan migrate --force  && ls -la /var/www/public/IMG && php artisan serve --host=0.0.0.0 --port=10000
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
